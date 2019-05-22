@@ -1,0 +1,61 @@
+﻿<Window x:Class="ContractApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:ContractApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        FontFamily="Comic sans ms">
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Ф.И.О арендодателя - " VerticalAlignment="Top" Height="23" Width="130"/>
+        <TextBox Name="lessorFullNameTextBox"  HorizontalAlignment="Right" Height="34" Margin="0,0,510,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="129"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,52,0,0" TextWrapping="Wrap" Text="Ф.И.О арендатора - " VerticalAlignment="Top" Height="23" Width="119"/>
+        <TextBox x:Name="tenantFullNameTextBox"  HorizontalAlignment="Right" Height="36" Margin="0,39,510,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140"/>
+        <TextBlock HorizontalAlignment="Right" Margin="0,10,249,0" TextWrapping="Wrap" Text="Дата - " VerticalAlignment="Top" Height="23" Grid.Column="1" Width="37"/>
+        <DatePicker Name="datePicker" HorizontalAlignment="Right" Margin="0,10,144,0" VerticalAlignment="Top" Height="24" Width="100"/>
+        <TextBlock HorizontalAlignment="Right" Margin="0,11,457,0" TextWrapping="Wrap" Text="Город -" VerticalAlignment="Top" Height="23" Width="48"/>
+        <TextBox Name="cityTextBox" HorizontalAlignment="Right" Height="33" Margin="0,0,332,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Right" Margin="0,53,455,0" TextWrapping="Wrap" Text="Адрес -" VerticalAlignment="Top" Height="23" Width="50"/>
+        <TextBox x:Name="addressTextBox" HorizontalAlignment="Right" Height="36" Margin="0,39,332,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Right" Margin="0,52,198,0" TextWrapping="Wrap" Text="Цена за месяц -" VerticalAlignment="Top" Height="23" Width="99"/>
+        <TextBox x:Name="priceTextBox" HorizontalAlignment="Right" Height="36" Margin="0,39,96,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="95"/>
+        <TextBlock HorizontalAlignment="Right" Margin="0,53,68,0" TextWrapping="Wrap" Text="Тг" VerticalAlignment="Top" Height="23" Width="22"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,90,0,0" TextWrapping="Wrap" Text="Кол-во комнат - " VerticalAlignment="Top" Width="119" Height="23"/>
+        <TextBox x:Name="countRoomsTextBox" HorizontalAlignment="Left" Height="33" Margin="134,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
+        <FlowDocumentScrollViewer Margin="0,140,0,0">
+            <FlowDocument Name="contractDocument">
+                <Paragraph TextAlignment="Center">
+                    <Bold>ДОГОВОР АРЕНДЫ КВАРТИРЫ</Bold>
+                </Paragraph>
+                <Paragraph TextAlignment="Right">
+                    <Run Text="{Binding ElementName=datePicker, Path=Text}"/> г.
+                </Paragraph>
+                <Paragraph>
+                    Мы, нижеподписавшиеся, гражданин
+                    <Run Text="{Binding ElementName=lessorFullNameTextBox, Path=Text}"/> , 
+                    именуемый в дальнейшем "Арендодатель", с одной стороны, 
+                    и гражданин
+                    <Run Text="{Binding ElementName=tenantFullNameTextBox, Path=Text}"/> , именуемый в дальнейшем "Арендатор", 
+                    с другой стороны, заключили настоящий Договор о нижеследующем:
+                </Paragraph>
+                <Paragraph TextAlignment="Center">
+                    <Bold>Предмет договора</Bold>
+                </Paragraph>
+                <Paragraph>
+                    1.1. Арендодатель предоставляет, а Арендатор получает во временное пользование (аренду)
+                    <Run Text="{Binding ElementName=countRoomsTextBox, Path=Text}"/> комнатную квартиру, 
+                    расположенную по адресу: г.
+                    <Run Text="{Binding ElementName=cityTextBox, Path=Text}"/> ул.
+                    <Run Text="{Binding ElementName=addressTextBox, Path=Text}"/>
+                    1.2. Арендодатель предоставляет, а Арендатор получает во временное пользование находящиеся в квартире предметы мебели и бытовую технику. 
+                    1.4. Передаваемая в аренду квартира используется Арендатором только для проживания без права сдачи её в субаренду. 
+                    1.5. За арендуемую квартиру Арендатором уплачивается месячная плата из расчета
+                    <Run Text="{Binding ElementName=priceTextBox, Path=Text}"/> тенге.
+                </Paragraph>
+            </FlowDocument>
+        </FlowDocumentScrollViewer>
+        <Button BorderBrush="Black" Click="PrintButtonClick" Content="Печать" HorizontalAlignment="Left" Margin="685,113,0,0" VerticalAlignment="Top" Width="80" Height="27"/>
+    </Grid>
+</Window>
